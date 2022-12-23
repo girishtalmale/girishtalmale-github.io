@@ -33,7 +33,33 @@
 
 </form>
 
-<script src="script.js"></script>
+<script>
+const date=document.getElementById('dob');
+date.addEventListener('input', () => validate(date));
+
+
+function validate(birthday)
+{
+var optimizedBirthday = birthday.replace(/-/g, "/");
+
+	//set date based on birthday at 01:00:00 hours GMT+0100 (CET)
+	var myBirthday = new Date(optimizedBirthday);
+
+	// set current day on 01:00:00 hours GMT+0100 (CET)
+	var currentDate = new Date().toJSON().slice(0,10)+' 01:00:00';
+
+	// calculate age comparing current date and borthday
+	var myAge = ~~((Date.now(currentDate) - myBirthday) / (31557600000));
+
+	if(myAge < 18 || myAge > 50) {
+     	    console.log('enter valid date');
+        }else{
+	    console.log('');
+	}
+
+}
+
+</script>
 </body>
 
 </html>
